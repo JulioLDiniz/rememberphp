@@ -61,6 +61,20 @@ class Model
 			}
 		}
 
+		public function insert($nome, $ip)
+		{
+			try {
+				$insert = $this->con->prepare("insert into maquinas(nome,ip) values (:nome, :ip)");
+				$insert->bindParam(":nome", $nome);
+				$insert->bindParam(":ip", $ip);
+				$insert->execute();
+
+				return "Maquina cadastrada com sucesso";
+			} catch (Exception $e) {
+				return "houve um erro".$e;
+			}
+		}
+
 	}
 
  ?>
